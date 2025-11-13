@@ -1,55 +1,68 @@
-[nmapscan.txt](https://github.com/user-attachments/files/23517402/nmapscan.txt)# Nmap-scans
-Nmap scans done on an ip address
 # 🛡️ Cyber Security Internship - Task 1: Local Network Port Scan
 
 **Internship Program:** Elevate Labs Cyber Security Internship
 
-## 🎯 1. Objective
+**Task Objective:** Learn to discover open ports on devices in the local network to understand network exposure.
 
-The objective of this task was to learn basic network reconnaissance by using **Nmap** to discover active hosts and identify **open TCP ports** on devices within the local network ($192.168.152.0/24$). [cite_start]This exercise provides an understanding of network service exposure and associated security risks. [cite: 6, 17, 27]
+---
 
-## 🛠️ 2. Tools and Command Used
+## 1. 🛠️ Tools and Command Used (Including TCP SYN Scan Explanation)
 
-| Tool | Version/Purpose |
-| :--- | :--- |
-| **Nmap** | Network discovery and security auditing tool. [cite: 7, 27] |
-| **Wireshark** | *Optional*: Not used for this submission/analysis. |
+| | **Tool** | **Purpose** |
+| :--- | :--- | :--- |
+| | **Nmap** | Network discovery and security auditing tool. |
+| | **Wireshark** | Optional tool for packet analysis (not used for this submission). |
 
 **Nmap Command Executed:**
-```bash
 nmap -sS 192.168.152.0/24
 
-## 3. Scan Results Summary
+*The command uses the **TCP SYN scan** (`-sS` flag). This scan is a "half-open" technique: Nmap sends a SYN packet, and if the port is open, the target replies with a SYN/ACK. Nmap immediately sends an RST packet to terminate the connection before the full TCP handshake completes. This makes the scan faster and more "stealthy" than a full connect scan.*
 
-Here's a more detailed summary of the Nmap scan:
+---
 
-*   **Active Hosts:** The scan of the [#############]/24 network identified a total of two active hosts.
-*   **Host with Open Ports:** The IP address [#############] was identified as the host with open ports.
-*   **Further Analysis:** A detailed list of the open ports on [#############] would be beneficial to understand the services running on that device and any potential security implications.
-The scan of the $192.168.152.0/24$ network identified 2 active hosts.
-The host with open ports was identified as $192.168.152.1$.
-Raw Scan Results:[Uploading nmap<?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet href="file:///C:/Program Files (x86)/Nmap/nmap.xsl" type="text/xsl"?><nmaprun args="nmap -sS 192.168.152.0/24" profile_name="" scanner="nmap" start="1763012331" startstr="Thu Nov 13 11:08:51 2025" version="7.98" xmloutputversion="1.04"><scaninfo type="syn" protocol="tcp" numservices="1000" services="1,3-4,6-7,9,13,17,19-26,30,32-33,37,42-43,49,53,70,79-85,88-90,99-100,106,109-111,113,119,125,135,139,143-144,146,161,163,179,199,211-212,222,254-256,259,264,280,301,306,311,340,366,389,406-407,416-417,425,427,443-445,458,464-465,481,497,500,512-515,524,541,543-545,548,554-555,563,587,593,616-617,625,631,636,646,648,666-668,683,687,691,700,705,711,714,720,722,726,749,765,777,783,787,800-801,808,843,873,880,888,898,900-903,911-912,981,987,990,992-993,995,999-1002,1007,1009-1011,1021-1100,1102,1104-1108,1110-1114,1117,1119,1121-1124,1126,1130-1132,1137-1138,1141,1145,1147-1149,1151-1152,1154,1163-1166,1169,1174-1175,1183,1185-1187,1192,1198-1199,1201,1213,1216-1218,1233-1234,1236,1244,1247-1248,1259,1271-1272,1277,1287,1296,1300-1301,1309-1311,1322,1328,1334,1352,1417,1433-1434,1443,1455,1461,1494,1500-1501,1503,1521,1524,1533,1556,1580,1583,1594,1600,1641,1658,1666,1687-1688,1700,1717-1721,1723,1755,1761,1782-1783,1801,1805,1812,1839-1840,1862-1864,1875,1900,1914,1935,1947,1971-1972,1974,1984,1998-2010,2013,2020-2022,2030,2033-2035,2038,2040-2043,2045-2049,2065,2068,2099-2100,2103,2105-2107,2111,2119,2121,2126,2135,2144,2160-2161,2170,2179,2190-2191,2196,2200,2222,2251,2260,2288,2301,2323,2366,2381-2383,2393-2394,2399,2401,2492,2500,2522,2525,2557,2601-2602,2604-2605,2607-2608,2638,2701-2702,2710,2717-2718,2725,2800,2809,2811,2869,2875,2909-2910,2920,2967-2968,2998,3000-3001,3003,3005-3006,3011,3017,3030-3031,3052,3071,3077,3128,3168,3211,3221,3260-3261,3268-3269,3283,3300-3301,3306,3322-3325,3333,3351,3367,3369-3372,3389-3390,3404,3476,3493,3517,3527,3546,3551,3580,3659,3689-3690,3703,3737,3766,3784,3800-3801,3809,3814,3826-3828,3851,3869,3871,3878,3880,3889,3905,3914,3918,3920,3945,3971,3986,3995,3998,4000-4006,4045,4111,4125-4126,4129,4224,4242,4279,4321,4343,4443-4446,4449,4550,4567,4662,4848,4899-4900,4998,5000-5004,5009,5030,5033,5050-5051,5054,5060-5061,5080,5087,5100-5102,5120,5190,5200,5214,5221-5222,5225-5226,5269,5280,5298,5357,5405,5414,5431-5432,5440,5500,5510,5544,5550,5555,5560,5566,5631,5633,5666,5678-5679,5718,5730,5800-5802,5810-5811,5815,5822,5825,5850,5859,5862,5877,5900-5904,5906-5907,5910-5911,5915,5922,5925,5950,5952,5959-5963,5985-5989,5998-6007,6009,6025,6059,6100-6101,6106,6112,6123,6129,6156,6346,6389,6502,6510,6543,6547,6565-6567,6580,6646,6666-6669,6689,6692,6699,6779,6788-6789,6792,6839,6881,6901,6969,7000-7002,7004,7007,7019,7025,7070,7100,7103,7106,7200-7201,7402,7435,7443,7496,7512,7625,7627,7676,7741,7777-7778,7800,7911,7920-7921,7937-7938,7999-8002,8007-8011,8021-8022,8031,8042,8045,8080-8090,8093,8099-8100,8180-8181,8192-8194,8200,8222,8254,8290-8292,8300,8333,8383,8400,8402,8443,8500,8600,8649,8651-8652,8654,8701,8800,8873,8888,8899,8994,9000-9003,9009-9011,9040,9050,9071,9080-9081,9090-9091,9099-9103,9110-9111,9200,9207,9220,9290,9415,9418,9485,9500,9502-9503,9535,9575,9593-9595,9618,9666,9876-9878,9898,9900,9917,9929,9943-9944,9968,9998-10004,10009-10010,10012,10024-10025,10082,10180,10215,10243,10566,10616-10617,10621,10626,10628-10629,10778,11110-11111,11967,12000,12174,12265,12345,13456,13722,13782-13783,14000,14238,14441-14442,15000,15002-15004,15660,15742,16000-16001,16012,16016,16018,16080,16113,16992-16993,17877,17988,18040,18101,18988,19101,19283,19315,19350,19780,19801,19842,20000,20005,20031,20221-20222,20828,21571,22939,23502,24444,24800,25734-25735,26214,27000,27352-27353,27355-27356,27715,28201,30000,30718,30951,31038,31337,32768-32785,33354,33899,34571-34573,35500,38292,40193,40911,41511,42510,44176,44442-44443,44501,45100,48080,49152-49161,49163,49165,49167,49175-49176,49400,49999-50003,50006,50300,50389,50500,50636,50800,51103,51493,52673,52822,52848,52869,54045,54328,55055-55056,55555,55600,56737-56738,57294,57797,58080,60020,60443,61532,61900,62078,63331,64623,64680,65000,65129,65389"></scaninfo><verbose level="0"></verbose><debugging level="0"></debugging><output type="interactive">Starting Nmap 7.98 ( https://nmap.org ) at 2025-11-13 11:08 +0530
-Nmap scan report for 192.168.152.254
-Host is up (0.000095s latency).
-All 1000 scanned ports on 192.168.152.254 are in ignored states.
-Not shown: 1000 filtered tcp ports (no-response)
-MAC Address: 00:50:56:FB:C7:83 (VMware)
+## 2. 📊 Scan Results Summary (Including Open Port Definition)
 
-Nmap scan report for 192.168.152.1
-Host is up (0.000020s latency).
-Not shown: 994 closed tcp ports (reset)
-PORT     STATE SERVICE
-135/tcp  open  msrpc
-139/tcp  open  netbios-ssn
-445/tcp  open  microsoft-ds
-902/tcp  open  iss-realsecure
-912/tcp  open  apex-mesh
-3306/tcp open  mysql
+The scan of the $192.168.152.0/24$ network identified **2 active hosts** (up).
 
-Nmap done: 256 IP addresses (2 hosts up) scanned in 36.75 seconds
-</output><host comment=""><status state="up"></status><address addr="192.168.152.254" vendor="" addrtype="ipv4"></address><address addr="00:50:56:FB:C7:83" vendor="VMware" addrtype="mac"></address><hostnames></hostnames><ports><extraports count="1000" state="filtered"></extraports></ports><os></os><uptime seconds="" lastboot=""></uptime><tcpsequence index="" difficulty="" values=""></tcpsequence><ipidsequence class="" values=""></ipidsequence><tcptssequence class="" values=""></tcptssequence></host><host comment=""><status state="up"></status><address addr="192.168.152.1" vendor="" addrtype="ipv4"></address><hostnames></hostnames><ports><extraports count="994" state="closed"></extraports><port portid="135" protocol="tcp"><state state="open" reason="syn-ack" reason_ttl="128"></state><service conf="3" method="table" name="msrpc"></service></port><port portid="139" protocol="tcp"><state state="open" reason="syn-ack" reason_ttl="128"></state><service conf="3" method="table" name="netbios-ssn"></service></port><port portid="445" protocol="tcp"><state state="open" reason="syn-ack" reason_ttl="128"></state><service conf="3" method="table" name="microsoft-ds"></service></port><port portid="902" protocol="tcp"><state state="open" reason="syn-ack" reason_ttl="128"></state><service conf="3" method="table" name="iss-realsecure"></service></port><port portid="912" protocol="tcp"><state state="open" reason="syn-ack" reason_ttl="128"></state><service conf="3" method="table" name="apex-mesh"></service></port><port portid="3306" protocol="tcp"><state state="open" reason="syn-ack" reason_ttl="128"></state><service conf="3" method="table" name="mysql"></service></port></ports><os></os><uptime seconds="" lastboot=""></uptime><tcpsequence index="" difficulty="" values=""></tcpsequence><ipidsequence class="" values=""></ipidsequence><tcptssequence class="" values=""></tcptssequence></host><runstats><finished time="1763012368" timestr="Thu Nov 13 11:09:28 2025"></finished><hosts up="2" down="254" total="256"></hosts></runstats></nmaprun>scan.txt…]()
+An **open port** is a logical communication endpoint on a device that is actively listening for incoming network connections. The host $192.168.152.1$ was found to have the following open TCP ports:
 
-<img width="814" height="603" alt="Screenshot 2025-11-13 111625" src="https://github.com/user-attachments/assets/0f403e62-0ec8-4ecb-b1b9-22ed80d3a6a2" />
-<img width="698" height="733" alt="Screenshot 2025-11-13 111650" src="https://github.com/user-attachments/assets/000bf4af-e8ba-43fc-b951-37391295ec94" />
-<img width="727" height="414" alt="Screenshot 2025-11-13 111756" src="https://github.com/user-attachments/assets/549743a4-ba09-43c8-8d44-dd62ce9e6331" />
+### Open Ports Found on Host $192.168.152.1$
+
+| **Port (TCP)** | **Service Name** | **Common Protocol/Use** |
+| :---: | :--- | :--- |
+| **135** | `msrpc` | Microsoft Remote Procedure Call |
+| **139** | `netbios-ssn` | NetBIOS Session Service |
+| **445** | `microsoft-ds` | Server Message Block (**SMB**/File Sharing) |
+| **902** | `iss-realsecure` | VMware Authentication Service / ESXi Host Agent |
+| **912** | `apex-mesh` | VMware Heartbeat / VMware Horizon |
+| **3306** | `mysql` | MySQL Database System |
+
+*(The raw Nmap output is attached as `nmapscan.txt`.)*
+
+---
+
+## 3. 🚨 Security Risk Identification (Including Port Scan and TCP/UDP Context)
+
+A **port scan** is the systematic attempt to determine which ports on a host are open. Attackers perform it as the first step of **network reconnaissance** to map services and locate vulnerabilities. The primary security risks identified are:
+
+* **High Risk: SMB/File Sharing Exposure (Ports 139, 445):** These services are high-value targets for malware (e.g., WannaCry) and unauthorized access, particularly if the OS is not patched.
+* **High Value Target: Database Compromise (Port 3306):** An exposed MySQL port can be subject to brute-force attacks or exploits, leading to data theft or corruption.
+* **Remote Management Vulnerabilities (Ports 135, 902, 912):** Services like RPC and VMware components can be exploited for **Remote Code Execution (RCE)** if the underlying software is outdated.
+* **TCP vs. UDP Scanning:** All identified ports use TCP, which is connection-oriented and reliable for scanning. **UDP** (connectionless) scanning is harder because an open port often gives **no response**, making it difficult to distinguish from a filtered port.
+
+---
+
+## 4. 🔒 Mitigation and Security Measures (Including Firewall Role)
+
+To secure the open ports found on $192.168.152.1$, the following measures must be taken. This addresses how open ports can be secured and the role of a firewall:
+
+* **Firewall Enforcement:** Configure a **firewall** to block incoming connections to all unnecessary ports. The **firewall's role** is to act as a crucial security gatekeeper, controlling access to these logical communication endpoints based on predefined rules.
+* **Access Restriction:** Restrict access to essential ports (like 3306 and 445) to **only trusted internal IP addresses** (IP whitelisting).
+* **Disable Unused Services:** If a service is not actively needed, it should be **disabled entirely** to reduce the attack surface.
+* **Patching:** Ensure the operating system and all running services (SMB, MySQL, VMware) are **fully patched** to address known vulnerabilities.
+
+---
+
+## 5. 📝 Wireshark Complementary Role
+
+**Wireshark** is a packet analyzer that captures and displays the raw network traffic. It complements port scanning by allowing a user to **verify the scan results** and troubleshoot firewall rules by observing the exact packets sent and received during the scan, confirming the target's behavior (e.g., seeing the SYN/ACK packets from the host).
