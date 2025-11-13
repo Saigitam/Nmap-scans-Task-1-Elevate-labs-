@@ -4,6 +4,8 @@
 
 **Task Objective:** Learn to discover open ports on devices in the local network to understand network exposure.
 
+**Name:** Kothamasu Sai Prasad.
+
 ---
 
 ## 1. 🛠️ Tools and Command Used (Including TCP SYN Scan Explanation)
